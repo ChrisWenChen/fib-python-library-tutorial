@@ -45,3 +45,6 @@ docs = [
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[project.scripts]
+fib = "fib_python_library_tutorial.cli:main"
