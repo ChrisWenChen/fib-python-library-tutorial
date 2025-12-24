@@ -17,6 +17,7 @@ def save_sequence(
     *,
     format: Format | None = None,
     dataset: str = "fib",
+    overwrite: bool = False,
     metadata: dict[str, Any] | None = None,
 ) -> Path:
     """
@@ -37,6 +38,8 @@ def save_sequence(
         - CSV: header comment lines "# key: value"
         - NPY: ignored (NPY stores only array by default)
         - HDF5: file attributes
+    overwrite
+        Whether to allow overwriting an existing file.
 
     Returns
     -------
@@ -51,6 +54,8 @@ def save_sequence(
         If numpy/h5py is required but not installed.
     """
     p = Path(path).expanduser().resolve()
+    if p.exists() and not overwrite:
+        raise FileExistsError(f"Refusing to overwrite existing file: {p}")
     fmt = _infer_format(p, format)
 
     if fmt == "csv":
