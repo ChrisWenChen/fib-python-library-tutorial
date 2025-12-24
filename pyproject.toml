@@ -2,32 +2,46 @@
 requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
+# ---------------------------------------------------------------------
+# Project metadata
+# ---------------------------------------------------------------------
 [project]
 name = "fib-python-library-tutorial"
 version = "0.1.0"
+description = "Educational Fibonacci sequence library with multiple algorithms, IO, tests, and benchmarks"
+readme = "README.md"
 requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+  { name = "Wen Chen", email = "wenchenphy@gmail.com" },
+]
+
 dependencies = []
 
+# ---------------------------------------------------------------------
+# Optional dependencies (extras)
+# ---------------------------------------------------------------------
 [project.optional-dependencies]
 test = [
-  "pytest>=8",
-  "pytest-benchmark>=5",
-]
-docs = [
-  "sphinx>=7",
-  "pydata-sphinx-theme>=0.15",
-  "sphinx-autodoc-typehints>=2",
+  "pytest>=8.0",
+  "pytest-benchmark>=5.1",
+  "numpy>=1.23",
+  "h5py>=3.8",
 ]
 bench = [
-  "numpy>=1.24",
-  "pytest-benchmark>=5",
+  "pytest-benchmark>=5.1",
 ]
 
-[tool.setuptools]
-package-dir = {"" = "src"}
+io = [
+  "numpy>=1.23",
+  "h5py>=3.8",
+]
+
+docs = [
+  "sphinx>=7.2",
+  "pydata-sphinx-theme>=0.15",
+  "sphinx-autodoc-typehints>=2.0",
+]
 
 [tool.setuptools.packages.find]
 where = ["src"]
-
-[tool.pytest.ini_options]
-testpaths = ["tests", "benchmarks"]
