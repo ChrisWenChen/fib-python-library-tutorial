@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fib-python-library-tutorial"
+version = "0.1.0"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+test = [
+  "pytest>=8",
+  "pytest-benchmark>=5",
+]
+docs = [
+  "sphinx>=7",
+  "pydata-sphinx-theme>=0.15",
+  "sphinx-autodoc-typehints>=2",
+]
+bench = [
+  "numpy>=1.24",
+  "pytest-benchmark>=5",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests", "benchmarks"]
